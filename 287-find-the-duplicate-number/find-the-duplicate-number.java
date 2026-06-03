@@ -1,20 +1,30 @@
-// algo -- 1st we create an array for mapping that contains all the nos. of that range, basically a length, if we find no. we will update the index value, if any index > 1, we find the no.
+// algo -- run 2 loop -- time limit exceededd
+// algo -- create a new array for mapping - not excepted as not allowed to create extra memory
+// algo -- 
 
 class Solution {
     public int findDuplicate(int[] nums) {
-        int l;
-        l=nums.length;
-        // range - 1 to l-1
-        int ar1[]=new int[l];
-        for(int i=0;i<l;i++)
-        {
-            int t=nums[i];
-            ar1[t]++;
-            if(ar1[t]>1)
-            {
-                return t;
+                int slow = nums[0];
+        int fast = nums[0];
+
+        while (true) {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+
+            if (slow == fast) {
+                break;
             }
         }
-        return 0;
+
+        int slow2 = nums[0];
+
+        while (slow != slow2) {
+            slow = nums[slow];
+            slow2 = nums[slow2];
+        }
+
+        return slow;        
+
+        
     }
 }
